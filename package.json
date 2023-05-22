@@ -23,7 +23,7 @@
     "truffle": "5.0.5",
     "web3": "1.0.0-beta.55"
   },
-  "homepage": "https://github.com/ArpitKRS/myDecentragram.git",
+  "homepage": "http://dappuniversity.github.io/decentragram",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
