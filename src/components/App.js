@@ -50,6 +50,12 @@ class App extends Component {
           images: [...this.state.images, image]
         })
       }
+
+      // Sort images. Show highest tipped images first
+      this.setState({
+        images: this.state.images.sort((a,b) => b.tipAmount - a.tipAmount )
+      })
+
       this.setState({ loading: false})
     } else {
       window.alert('Decentragram contract not deployed to detected network')
@@ -86,6 +92,13 @@ class App extends Component {
     })
   }
 
+  tipImageOwner = (id, tipAmount) => {
+    this.setState({ loading: true })
+    this.state.decentragram.methods.tipImageOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
+      this.setState({ loading: false })
+    })
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -106,6 +119,7 @@ class App extends Component {
               images={this.state.images}
               captureFile={this.captureFile}
               uploadImage={this.uploadImgae}
+              tipImageOwner={this.tipImageOwner}
             />
           }
       </div>
